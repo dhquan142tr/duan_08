@@ -1,0 +1,158 @@
+@use "../abstracts";
+
+.dropdown {
+    position: absolute;
+    left: 0;
+    padding-top: 54px;
+    width: min(1240px, 100%);
+    display: none;
+
+    @include abstracts.breakpoint(lg) {
+        padding-top: 0;
+        position: inherit;
+    }
+
+    &__inner {
+        --inner-padding: 30px;
+        position: relative;
+        padding: var(--inner-padding);
+        border-radius: 20px;
+        background: var(--dropdown-bg-color);
+        box-shadow: 0px 40px 90px 20px var(--dropdown-shadow);
+
+        &::before {
+            content: url("../icons/dropdown-arrow.svg");
+            position: absolute;
+            top: -12px;
+            left: var(--arrow-left-pos);
+            translate: -50%;
+            filter: var(--dropdown-arrow-color);
+        }
+
+        @include abstracts.breakpoint(lg) {
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+            padding: 0 40px;
+
+            &::before {
+                content: none;
+            }
+        }
+
+        @include abstracts.breakpoint(sm) {
+            padding: 0 20px;
+        }
+    }
+}
+
+.top-menu {
+    --menu--column-width: 292px;
+    position: relative;
+
+    &__main {
+        width: var(--menu--column-width);
+        height: calc(min(582px, 100vh - 158px) - var(--inner-padding) * 2);
+        border-right: 1px solid var(--top-menu-border-right);
+        overflow-y: auto;
+
+        @include abstracts.breakpoint(lg) {
+            width: 100%;
+            height: auto;
+            border-right: none;
+        }
+    }
+}
+
+.menu-column {
+    display: flex;
+    gap: 14px;
+
+    @include abstracts.breakpoint(lg) {
+        margin-top: 20px;
+    }
+
+    + .menu-column {
+        margin-top: 30px;
+    }
+
+    &__icon {
+        position: relative;
+
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+    }
+
+    &__icon-1 {
+        width: 30px;
+        height: 30px;
+        object-fit: cover;
+    }
+
+    &__icon-2 {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+
+        width: 21px;
+        height: 21px;
+        object-fit: cover;
+        filter: var(--menu-column-icon-color);
+    }
+
+    &__content {
+        flex: 1;
+    }
+
+    &__heading {
+        margin-top: 6px;
+        font-size: 1.6rem;
+        font-weight: 500;
+        line-height: 150%;
+        @include abstracts.breakpoint(lg) {
+            margin-bottom: 26px;
+        }
+    }
+
+    &__list {
+        margin-top: 19px;
+        @include abstracts.breakpoint(lg) {
+            margin-top: 0;
+        }
+    }
+
+    &__item {
+        &--active .sub-menu {
+            display: grid;
+        }
+    }
+
+    &__item:hover > &__link {
+        color: #0071dc;
+        font-weight: 500;
+    }
+    &__link {
+        display: block;
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 142.857%;
+        padding: 7px 0;
+    }
+}
+
+.sub-menu {
+    position: absolute;
+    inset: 0 0 0 var(--menu--column-width);
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--inner-padding);
+    padding-left: var(--inner-padding);
+    overflow-y: auto;
+
+    @include abstracts.breakpoint(lg) {
+        position: initial;
+        grid-template-columns: 1fr;
+        padding-left: 0;
+    }
+}

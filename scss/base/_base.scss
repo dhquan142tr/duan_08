@@ -12,6 +12,7 @@ body {
     font-size: 1.6rem;
     font-family: "Gordita", sans-serif;
     color: var(--text-color);
+    background: var(--body-bg);
 }
 
 a {
@@ -29,12 +30,14 @@ button {
     cursor: pointer;
 }
 
+a,
 button,
 input,
 select,
 textarea {
     font-family: inherit;
     color: inherit;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .icon {
