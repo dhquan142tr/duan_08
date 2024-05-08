@@ -1,0 +1,29 @@
+@use "../abstracts";
+
+.slideshow {
+    &__inner {
+        display: flex;
+        overflow: hidden;
+    }
+
+    &__item {
+        position: relative;
+        flex-shrink: 0;
+        width: 100%;
+        padding-top: 34%;
+
+        @include abstracts.screen(md) {
+            padding-top: 50%;
+        }
+    }
+
+    &__img {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+}

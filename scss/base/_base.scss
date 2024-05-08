@@ -1,3 +1,5 @@
+@use "../abstracts";
+
 *,
 ::after,
 ::before {
@@ -28,6 +30,7 @@ button {
     outline: none;
     background: transparent;
     cursor: pointer;
+    padding: 0;
 }
 
 a,
@@ -38,8 +41,23 @@ textarea {
     font-family: inherit;
     color: inherit;
     -webkit-tap-highlight-color: transparent;
+    outline: none;
+    border: none;
+    padding: 0;
 }
 
 .icon {
     filter: var(--icon-color);
+}
+
+.container {
+    @include abstracts.screen(sm) {
+        .container {
+            --grid-gutter-x: 40px;
+        }
+    }
+}
+
+input {
+    background: transparent;
 }
